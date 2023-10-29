@@ -1,6 +1,6 @@
 /*
  * Cute -- C Unit Test Library
- * <https://github.com/mity/Cute>
+ * <https://github.com/Rickodesea/Cute>
  *
  * Copyright 2023 Alrick Grandison
  * Copyright 2013-2020 Martin Mitas
