@@ -1161,19 +1161,19 @@ Cute_CallbackSehException(EXCEPTION_POINTERS *ptrs)
 #define CUTE_CMDLINE_OPTID_MISSINGARG       (-0x7fffffff + 1)
 #define CUTE_CMDLINE_OPTID_BOGUSARG         (-0x7fffffff + 2)
 
-typedef struct acutest_test_CMDLINE_OPTION_ {
+typedef struct Cute_TestCmdlineOption {
     char shortname;
     const char* longname;
     int id;
     unsigned flags;
-} CUTE_CMDLINE_OPTION;
+} Cute_CmdlineOption;
 
 static int
-Cute_HandleCmdlineShortOptGroup(const CUTE_CMDLINE_OPTION* options,
+Cute_HandleCmdlineShortOptGroup(const Cute_CmdlineOption* options,
                     const char* arggroup,
                     int (*callback)(int /*optval*/, const char* /*arg*/))
 {
-    const CUTE_CMDLINE_OPTION* opt;
+    const Cute_CmdlineOption* opt;
     int i;
     int ret = 0;
 
@@ -1205,11 +1205,11 @@ Cute_HandleCmdlineShortOptGroup(const CUTE_CMDLINE_OPTION* options,
 #define CUTE_CMDLINE_AUXBUF_SIZE  32
 
 static int
-Cute_ReadCmdline(const CUTE_CMDLINE_OPTION* options, int argc, char** argv,
+Cute_ReadCmdline(const Cute_CmdlineOption* options, int argc, char** argv,
                       int (*callback)(int /*optval*/, const char* /*arg*/))
 {
 
-    const CUTE_CMDLINE_OPTION* opt;
+    const Cute_CmdlineOption* opt;
     char auxbuf[CUTE_CMDLINE_AUXBUF_SIZE+1];
     int after_doubledash = 0;
     int i = 1;
@@ -1355,7 +1355,7 @@ Cute_PrintHelpMessage(void)
     }
 }
 
-static const CUTE_CMDLINE_OPTION acutest_cmdline_options_[] = {
+static const Cute_CmdlineOption Cute_options_cmdline[] = {
     { 's',  "skip",         's', 0 },
     {  0,   "exec",         'e', CUTE_CMDLINE_OPTFLAG_OPTIONALARG },
     { 'E',  "no-exec",      'E', 0 },
@@ -1621,7 +1621,7 @@ main(int argc, char** argv)
     }
 
     /* Parse options */
-    Cute_ReadCmdline(acutest_cmdline_options_, argc, argv, Cute_CallbackCmdline);
+    Cute_ReadCmdline(Cute_options_cmdline, argc, argv, Cute_CallbackCmdline);
 
     /* Initialize the proper timer. */
     Cute_InitializeTimer();
