@@ -68,7 +68,7 @@
  *
  * If any condition fails throughout execution of a test, the test fails.
  *
- * CUTE_CHECK takes only one argument (the condition), CUTE_CHECK_FORMAT allows
+ * CUTE_CHECK takes only one argument (the condition), CUTE_CHECK_F allows
  * also to specify an error message to print out if the condition fails.
  * (It expects printf-like format string and its parameters). The macros
  * return non-zero (condition passes) or 0 (condition fails).
@@ -82,11 +82,11 @@
  *       CUTE_CHECK(ptr->member2 > 200);
  *   }
  */
-#define CUTE_CHECK_FORMAT(cond,...)   Cute_Check((cond), __FILE__, __LINE__, __VA_ARGS__)
+#define CUTE_CHECK_F(cond,...)   Cute_Check((cond), __FILE__, __LINE__, __VA_ARGS__)
 #define CUTE_CHECK(cond)        Cute_Check((cond), __FILE__, __LINE__, "%s", #cond)
 
 
-/* These macros are the same as CUTE_CHECK_FORMAT and CUTE_CHECK except that if the
+/* These macros are the same as CUTE_CHECK_F and CUTE_CHECK except that if the
  * condition fails, the currently executed unit test is immediately aborted.
  *
  * That is done either by calling abort() if the unit test is executed as a
@@ -101,7 +101,7 @@
  * effects to the outside world (e.g. communicating with some server, inserting
  * into a database etc.).
  */
-#define CUTE_ASSERT_FORMAT(cond,...)                                                 \
+#define CUTE_ASSERT_F(cond,...)                                                 \
     do {                                                                       \
         if(!Cute_Check((cond), __FILE__, __LINE__, __VA_ARGS__))           \
             Cute_Abort();                                                  \
@@ -124,13 +124,13 @@
  * every single CUTE_CHECK inside the loop body.
  *
  * CUTE_CASE allows to specify only single string as the name of the case,
- * CUTE_CASE_FORMAT provides all the power of printf-like string formatting.
+ * CUTE_CASE_F provides all the power of printf-like string formatting.
  *
  * Note that the test cases cannot be nested. Starting a new test case ends
  * implicitly the previous one. To end the test case explicitly (e.g. to end
  * the last test case after exiting the loop), you may use CUTE_CASE(NULL).
  */
-#define CUTE_CASE_FORMAT(...)         Cute_Case(__VA_ARGS__)
+#define CUTE_CASE_F(...)         Cute_Case(__VA_ARGS__)
 #define CUTE_CASE(name)         Cute_Case("%s", name)
 
 

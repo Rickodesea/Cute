@@ -26,8 +26,8 @@ test_fail(void)
     b = 2;
     CUTE_CHECK(a + b == 5);
 
-    /* Here is CUTE_CHECK_FORMAT in action. */
-    CUTE_CHECK_FORMAT(a + b == 5, "%d + %d == 5", a, b);
+    /* Here is CUTE_CHECK_F in action. */
+    CUTE_CHECK_F(a + b == 5, "%d + %d == 5", a, b);
 
     /* We may also show more information about the failure. */
     if(!CUTE_CHECK(a + b == 5)) {
@@ -68,7 +68,7 @@ test_crash(void)
     int* invalid = ((int*)NULL) + 0xdeadbeef;
 
     *invalid = 42;
-    CUTE_CHECK_FORMAT(1 == 1, "This should never execute, due to a write into "
+    CUTE_CHECK_F(1 == 1, "This should never execute, due to a write into "
                         "an invalid address.");
 }
 

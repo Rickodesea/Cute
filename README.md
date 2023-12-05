@@ -279,7 +279,7 @@ The specified name applies to all checks executed after the use of `CUTE_CASE`
 Many of the macros mentioned in the earlier sections have a counterpart which
 allows to output a custom messages instead of some default ones.
 
-All of these have the same name as the aforementioned macros, just with `_FORMAT` added. 
+All of these have the same name as the aforementioned macros, just with `_F` added. 
 With the suffix, they then expect `printf`-like string format and corresponding additional arguments.
 
 So, for example, instead of the simple checking macros
@@ -289,8 +289,8 @@ CUTE_ASSERT(x < y);
 ```
 we can use their respective counterparts with a custom messages:
 ```C
-CUTE_CHECK_FORMAT(a == b, "%d is equal to %d", a, b);
-CUTE_ASSERT_FORMAT(x < y, "%d is lower than %d", x, y);
+CUTE_CHECK_F(a == b, "%d is equal to %d", a, b);
+CUTE_ASSERT_F(x < y, "%d is lower than %d", x, y);
 ```
 
 You should use some neutral wording for them because, with the command line
@@ -306,7 +306,7 @@ CUTE_CASE("name");
 ```
 we can use richer
 ```C
-CUTE_CASE_FORMAT("iteration #%d", 42);
+CUTE_CASE_F("iteration #%d", 42);
 ```
 
 However note all of these can only be used if your compiler supports variadic
@@ -395,7 +395,7 @@ $ ./test_example --help
 **Q: This project started as a fork from "acutest"?**
 
 **A:** Yes. We initially began as a forked from [https://github.com/mity/acutest](https://github.com/mity/acutest).  We wanted a testing a library that focuses only on C.
-While on the other hand acutest caters to both C and C.  It had some features that were only
+While on the other hand acutest caters to both C and C++.  It had some features that were only
 implemented in C.  We want a uniform API for C and across platforms.
 
 
